@@ -1,0 +1,35 @@
+version: 2
+models:
+  - name: core_events
+    description: "This model is used to transform raw event data into a clean set"
+    config:
+      materialized: incremental
+      unique_key: event_id
+      incremental_strategy: delete+insert
+
+    columns:
+      - name: event_id
+        description: "The unique identifier for each event."
+        tests:
+          - unique
+          - not_null
+
+      - name: cov_account_id
+        description: "The account ID associated with the event, or a generated value if null."
+        tests:
+          - not_null
+
+      - name: con_device_id
+        description: "The device ID associated with the event, or a generated value if null."
+        tests:
+          - not_null
+
+      - name: person_id
+        description: "A concatenation of account and device ID that uniquely identifies a person."
+        tests:
+          - not_null
+
+      - name: created_at
+        description: "Timestamp of when the event occurred."
+        tests:
+          - not_null

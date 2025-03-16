@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: core_account_to_person_map
+    description: "This model creates a mapping between account_id and person_id, with the respective created_at timestamp."
+    config:
+      materialized: incremental
+      unique_key: account_id
+      incremental_strategy: delete+insert
+
+    columns:
+      - name: account_id
+        description: "The account ID associated with the person."
+        tests:
+          - not_null
+          - unique
+
+      - name: person_id
+        description: "The person ID associated with the account."
+        tests:
+          - not_null
+
+      - name: created_at
+        description: "Timestamp of when the account-person mapping was created."
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['timestamp']

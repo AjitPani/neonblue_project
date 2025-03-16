@@ -1,0 +1,28 @@
+version: 2
+models:
+  - name: core_device_to_person_map
+    description: "This model creates a mapping between device_id and person_id."
+    config:
+      materialized: incremental
+      unique_key: device_id
+      incremental_strategy: delete+insert
+
+    columns:
+      - name: device_id
+        description: "The unique device ID associated with the person."
+        tests:
+          - not_null
+          - unique
+
+      - name: person_id
+        description: "The person ID associated with the device."
+        tests:
+          - not_null
+
+      - name: created_at
+        description: "Timestamp of when the device-person mapping was created."
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['timestamp']
+

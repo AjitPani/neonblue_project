@@ -1,0 +1,18 @@
+version: 2
+
+sources:
+  - name: hiring_scratch
+    database: hiring
+    schema: scratch
+    tables:
+      - name: raw_events_ajit
+        description: "This table contains raw event data for user activity"
+        columns:
+          - name: event_id
+            description: "Unique event identifier"
+          - name: device_id
+            description: "Unique device identifier"
+          - name: account_id
+            description: "Unique account identifier"
+          - name: created_at
+            description: "Timestamp when the event occurred"
