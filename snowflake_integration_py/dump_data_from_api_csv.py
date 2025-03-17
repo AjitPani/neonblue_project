@@ -140,4 +140,4 @@ def main(label_prefix="ajit-test1", row_count=1000, start_date="2024-01-01", end
 
 # Example usage
 if __name__ == "__main__":
-    main(label_prefix="ajit-test1", row_count=1000, start_date="2024-01-02", end_date="2024-01-03")
+    main(label_prefix="ajit-test1", row_count=1000, start_date="2024-01-01", end_date="2024-01-03") #timeframe

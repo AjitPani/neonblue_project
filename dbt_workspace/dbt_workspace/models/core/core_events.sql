@@ -20,7 +20,7 @@ WITH raw_events AS (
         END AS con_device_id,
 
         CONCAT(cov_account_id, '-', con_device_id) AS person_id,
-        RAW_EVENTS:"created_at"::TIMESTAMP_LTZ AS created_at
+        TO_TIMESTAMP(RAW_EVENTS:"created_at"::integer/1000000000) AS created_at -- convert the epoch time to timestamp
     FROM {{ source("RAW_EVENTS_AJIT") }}
 )
 
